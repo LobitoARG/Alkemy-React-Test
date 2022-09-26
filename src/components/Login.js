@@ -1,6 +1,6 @@
 import axios from "axios";
 import swAlert from '@sweetalert/with-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function Login(){
    
@@ -37,29 +37,32 @@ function Login(){
             navigate('/listado')
         })
     }
+    let token = localStorage.getItem('token')
 
     return (
-        <div className="content-login">
-            <h3>Log in Alkemy</h3>
-            <div className="container-form-login">
-                <form onSubmit={submitHandler}>
-                    <label>
-                    <span>E Mail</span>
-                    <br/>
-                    <input type="text" name="email"></input>
+        <>
+        {token && <Navigate to="/listado" />}
+
+        <div className="row">
+            <div className="col-6 offset-3">
+            <h2>Log in Alkemy</h2>
+            <form onSubmit={submitHandler}>
+                    <label className="form-label d-block mt-2">
+                    <span>E-mail</span>
+                    <input type="text" name="email" className="form-control"></input>
                     </label>
                     
-                    <br/>
-                    <label>
+                    
+                    <label className="form-label d-block mt-2">
                     <span>Password</span>
-                    <br/>
-                    <input type="password" name="password"></input>
+                    <input type="password" name="password" className="form-control"></input>
                     </label>
-                    <br/>
-                    <button type="submit">Ingresar</button>
-                </form>
+
+                    <button type="submit" className="btn btn-primary mb-3 mt-2">Ingresar</button>
+            </form>
             </div>
         </div>
+        </>
     )
 
 }
