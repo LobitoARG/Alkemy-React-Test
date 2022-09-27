@@ -33,16 +33,18 @@ function Login(){
         .then(res=>{
             swAlert(<h2>Perfecto, ingresaste correctamente!</h2>)
             const tokenRecibido = res.data.token;
-            localStorage.setItem('token', tokenRecibido);
+           sessionStorage.setItem('token', tokenRecibido);
             navigate('/listado')
         })
     }
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
 
     return (
-        <>
+        <div className="container">
         {token && <Navigate to="/listado" />}
+        
 
+        
         <div className="row">
             <div className="col-6 offset-3">
             <h2>Log in Alkemy</h2>
@@ -62,7 +64,7 @@ function Login(){
             </form>
             </div>
         </div>
-        </>
+        </div>
     )
 
 }

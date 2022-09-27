@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
 import swAlert from '@sweetalert/with-react';
 
+import Buscador from './Buscador';
+
 function Header (){
 
     function logOut (){
-        localStorage.clear()
+        sessionStorage.clear()
         swAlert(<h2>Deslogeado</h2>)
     }
 
-    let token = localStorage.getItem('token')
+    let token = sessionStorage.getItem('token')
+    
     return (
-       <header className='mb-3'>
+       <header>
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+            <div className='container'>
             <ul className='navbar-nav'>
                 <li className='nav-item'>
                     <Link to={'/'} className='nav-link active'> Home </Link>
@@ -23,8 +27,9 @@ function Header (){
                     <button className='btn btn-primary' onClick={logOut}> Log out</button>
                 </li> : <li className='display-none'></li>
                 }
-                
             </ul>
+            </div>
+            <Buscador/>
         </nav>
        </header>
     )
